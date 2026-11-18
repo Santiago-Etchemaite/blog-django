@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Inicio | Blog Django{% endblock %}
+
+{% block contenido %}
+<h1 class="mb-4">Últimas publicaciones</h1>
+
+{% if posts %}
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if post.imagen %}
+                        <img src="{{ post.imagen.url }}" class="card-img-top post-imagen" alt="{{ post.titulo }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.titulo }}</h5>
+                        <p class="card-text">{{ post.contenido|truncatewords:25 }}</p>
+                    </div>
+                    <div class="card-footer text-muted small">
+                        Por {{ post.autor.username }} · {{ post.fecha_creacion|date:"d/m/Y H:i" }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted">Todavía no hay publicaciones.</p>
+{% endif %}
+{% endblock %}
