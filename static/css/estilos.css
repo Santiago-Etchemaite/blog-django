@@ -8,3 +8,29 @@ body {
     max-height: 400px;
     object-fit: cover;
 }
+
+/* Formularios: campos a lo ancho, con bordes redondeados */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+}
+
+/* Textos de ayuda, más chicos y en gris */
+.helptext {
+    display: block;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Mensajes de error, en rojo */
+.errorlist {
+    color: #dc3545;
+    padding-left: 1rem;
+}
