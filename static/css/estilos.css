@@ -1,0 +1,10 @@
+/* Estilos propios del blog */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.post-imagen {
+    max-height: 400px;
+    object-fit: cover;
+}
