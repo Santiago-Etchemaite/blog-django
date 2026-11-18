@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ post.titulo }} | Blog Django{% endblock %}
+
+{% block contenido %}
+<article class="card shadow-sm">
+    {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" class="card-img-top post-imagen" alt="{{ post.titulo }}">
+    {% endif %}
+    <div class="card-body">
+        <h1 class="card-title">{{ post.titulo }}</h1>
+        <p class="text-muted small">
+            Por {{ post.autor.username }} · {{ post.fecha_creacion|date:"d/m/Y H:i" }}
+        </p>
+        <div class="card-text">{{ post.contenido|linebreaks }}</div>
+    </div>
+</article>
+
+<a href="{% url 'lista_posts' %}" class="btn btn-outline-secondary mt-4">← Volver al inicio</a>
+{% endblock %}

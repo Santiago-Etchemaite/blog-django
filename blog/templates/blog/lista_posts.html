@@ -15,7 +15,8 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ post.titulo }}</h5>
-                        <p class="card-text">{{ post.contenido|truncatewords:25 }}</p>
+                        <p class="card-text">{{ post.contenido|truncatewords:25 }}</p>                        
+                        <a href="{% url 'detalle_post' post.pk %}" class="btn btn-sm btn-primary">Leer más</a>
                     </div>
                     <div class="card-footer text-muted small">
                         Por {{ post.autor.username }} · {{ post.fecha_creacion|date:"d/m/Y H:i" }}
