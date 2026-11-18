@@ -16,6 +16,11 @@
     </div>
 </article>
 
-<a href="{% url 'lista_posts' %}" class="btn btn-outline-secondary mt-4">← Volver al inicio</a>
+<div class="mt-4 d-flex gap-2">
+    <a href="{% url 'lista_posts' %}" class="btn btn-outline-secondary">← Volver al inicio</a>
+    {% if user == post.autor %}
+        <a href="{% url 'editar_post' post.pk %}" class="btn btn-warning">Editar</a>
+    {% endif %}
+</div>
 {% endblock %}
 

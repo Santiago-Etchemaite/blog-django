@@ -27,3 +27,16 @@ def crear_post(request):
     else:
         form = PostForm()
     return render(request, 'blog/formulario_post.html', {'form': form, 'titulo_pagina': 'Nuevo post'})
+
+
+@login_required
+def editar_post(request, pk):
+    post = get_object_or_404(Post, pk=pk, autor=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_post', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/formulario_post.html', {'form': form, 'titulo_pagina': 'Editar post'})
