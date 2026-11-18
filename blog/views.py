@@ -40,3 +40,12 @@ def editar_post(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/formulario_post.html', {'form': form, 'titulo_pagina': 'Editar post'})
+
+
+@login_required
+def eliminar_post(request, pk):
+    post = get_object_or_404(Post, pk=pk, autor=request.user)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('lista_posts')
+    return render(request, 'blog/confirmar_eliminar.html', {'post': post})
