@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Mi perfil | Blog Django{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h1 class="h3">Mi perfil</h1>
+        <p class="mb-1"><strong>Usuario:</strong> {{ user.username }}</p>
+        <p class="mb-0"><strong>Miembro desde:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
+    </div>
+</div>
+
+<h2 class="h4 mb-3">Mis publicaciones</h2>
+{% if posts %}
+    <ul class="list-group">
+        {% for post in posts %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'detalle_post' post.pk %}">{{ post.titulo }}</a>
+                <span class="text-muted small">{{ post.fecha_creacion|date:"d/m/Y" }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="text-muted">Todavía no publicaste nada.</p>
+{% endif %}
+{% endblock %}
