@@ -11,12 +11,17 @@
 <body>
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/">Blog Django</a>
-            <div>
+            <a class="navbar-brand" href="{% url 'lista_posts' %}">Blog Django</a>
+            <div class="d-flex align-items-center gap-2">
                 {% if user.is_authenticated %}
-                    <span class="navbar-text">Hola, {{ user.username }}</span>
+                    <span class="navbar-text me-2">Hola, {{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                    </form>
                 {% else %}
-                    <span class="navbar-text">No iniciaste sesión</span>
+                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Iniciar sesión</a>
+                    <a href="{% url 'registro' %}" class="btn btn-primary btn-sm">Registrarse</a>
                 {% endif %}
             </div>
         </div>
